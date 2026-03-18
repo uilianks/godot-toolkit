@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://c67x5y5hnjgce"]
+
+[ext_resource type="Texture2D" uid="uid://dsovd222g72w1" path="res://assets/icon.svg" id="1_2t263"]
+[ext_resource type="Script" uid="uid://dvt3nopnv1qqv" path="res://01_component_structure/scenes/character.gd" id="1_2uymw"]
+[ext_resource type="Script" uid="uid://bgurt5x8e3ug" path="res://01_component_structure/scripts/movement_component.gd" id="3_0x8me"]
+[ext_resource type="Script" uid="uid://dplf5vgc4fp8d" path="res://01_component_structure/scripts/life_component.gd" id="4_fdktb"]
+[ext_resource type="Script" uid="uid://b73jbpmvky5th" path="res://01_component_structure/scripts/shoot_component.gd" id="5_1te8l"]
+[ext_resource type="Script" uid="uid://dbgryv6so66lt" path="res://01_component_structure/scripts/pickup_bullet.gd" id="6_rlam1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2t263"]
+size = Vector2(122, 118)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fdktb"]
+radius = 80.05623
+
+[node name="Character" type="CharacterBody2D" unique_id=1379392105]
+script = ExtResource("1_2uymw")
+speed = 100.0
+life = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=718762466]
+texture = ExtResource("1_2t263")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=853987187]
+shape = SubResource("RectangleShape2D_2t263")
+
+[node name="PickUpBullet" type="Area2D" parent="." unique_id=1079077714]
+script = ExtResource("6_rlam1")
+metadata/_custom_type_script = "uid://dbgryv6so66lt"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpBullet" unique_id=249147294]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_fdktb")
+debug_color = Color(0.9296457, 2.9263496e-05, 0.6619074, 0.41960785)
+
+[node name="UI" type="Control" parent="." unique_id=1181671313]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="ProgressBar" parent="UI" unique_id=1520893798]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -81.0
+offset_top = -104.0
+offset_right = 81.0
+offset_bottom = -77.0
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="UI/HealthBar" unique_id=475096178]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="DoDamage" type="Button" parent="UI" unique_id=1563967992]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 106.0
+offset_top = -57.0
+offset_right = 204.0
+offset_bottom = -26.0
+text = "Do Damage"
+
+[node name="Components" type="Node" parent="." unique_id=2101741235]
+
+[node name="MovementComponent" type="Node" parent="Components" unique_id=151141339 node_paths=PackedStringArray("body")]
+script = ExtResource("3_0x8me")
+body = NodePath("../..")
+metadata/_custom_type_script = "uid://bgurt5x8e3ug"
+
+[node name="LifeComponent" type="Node" parent="Components" unique_id=867089621 node_paths=PackedStringArray("character", "health_bar", "health_label")]
+script = ExtResource("4_fdktb")
+character = NodePath("../..")
+health_bar = NodePath("../../UI/HealthBar")
+health_label = NodePath("../../UI/HealthBar/HealthLabel")
+metadata/_custom_type_script = "uid://dplf5vgc4fp8d"
+
+[node name="ShootComponent" type="Node" parent="Components" unique_id=1692128055 node_paths=PackedStringArray("body")]
+script = ExtResource("5_1te8l")
+body = NodePath("../..")
+metadata/_custom_type_script = "uid://b73jbpmvky5th"
+
+[node name="PickUpComponent" type="Node" parent="Components" unique_id=1709338786 node_paths=PackedStringArray("shoot_component")]
+script = ExtResource("6_rlam1")
+shoot_component = NodePath("../ShootComponent")
+metadata/_custom_type_script = "uid://dbgryv6so66lt"
+
+[connection signal="body_entered" from="PickUpBullet" to="PickUpBullet" method="_on_body_entered"]
+[connection signal="pressed" from="UI/DoDamage" to="Components/LifeComponent" method="_take_damage"]
