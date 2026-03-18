@@ -67,7 +67,6 @@ horizontal_alignment = 1
 
 [node name="DoDamage" type="Button" parent="UI" unique_id=1563967992]
 unique_name_in_owner = true
-visible = false
 layout_mode = 0
 offset_left = 106.0
 offset_top = -57.0

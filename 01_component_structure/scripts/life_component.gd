@@ -21,3 +21,9 @@ func check_if_alive():
 		character.queue_free()
 	else:
 		print('still alive')
+
+func take_damage(amount: int) -> void:
+	character.life -= amount
+	character.life = max(character.life, 0)
+	check_life()
+	check_if_alive()  # ← faltava isso

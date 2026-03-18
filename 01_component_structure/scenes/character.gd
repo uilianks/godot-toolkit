@@ -12,6 +12,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	movement_component.handle_movement(delta)
+	life_component.check_life()
 
 func _input(event) -> void:
 	if Input.is_action_just_pressed("ui_accept"):

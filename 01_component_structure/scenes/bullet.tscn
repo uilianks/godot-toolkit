@@ -18,4 +18,5 @@ position = Vector2(0.5, 0)
 scale = Vector2(0.0546875, 0.0390625)
 texture = ExtResource("1_hmv65")
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered_do_damage"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
