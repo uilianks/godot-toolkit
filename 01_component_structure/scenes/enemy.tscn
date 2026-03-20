@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://7f1vsdn46ikq"]
+
+[ext_resource type="Script" uid="uid://d2c8xgj8hjm7w" path="res://01_component_structure/scenes/enemy.gd" id="1_a1xrl"]
+[ext_resource type="Texture2D" uid="uid://dsovd222g72w1" path="res://assets/icon.svg" id="1_ry6iv"]
+[ext_resource type="Script" uid="uid://dplf5vgc4fp8d" path="res://01_component_structure/scripts/life_component.gd" id="4_ey2gv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6vsq"]
+size = Vector2(122, 118)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1604450144]
+script = ExtResource("1_a1xrl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1625533016]
+modulate = Color(0.40784314, 0.019607844, 0, 1)
+texture = ExtResource("1_ry6iv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=118761821]
+shape = SubResource("RectangleShape2D_q6vsq")
+
+[node name="UI" type="Control" parent="." unique_id=553849048]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="ProgressBar" parent="UI" unique_id=1041611551]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -81.0
+offset_top = -104.0
+offset_right = 81.0
+offset_bottom = -77.0
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="UI/HealthBar" unique_id=1475229884]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="Components" type="Node" parent="." unique_id=839548345]
+
+[node name="LifeComponent" type="Node" parent="Components" unique_id=1047983280 node_paths=PackedStringArray("character", "health_bar", "health_label")]
+script = ExtResource("4_ey2gv")
+life = 100
+character = NodePath("../..")
+health_bar = NodePath("../../UI/HealthBar")
+health_label = NodePath("../../UI/HealthBar/HealthLabel")
+metadata/_custom_type_script = "uid://dplf5vgc4fp8d"

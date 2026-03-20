@@ -1,8 +1,5 @@
 extends CharacterBody2D
 
-@export var speed: float = 0
-@export var life: int = 0
-
 @onready var movement_component: MovementComponent = $Components/MovementComponent
 @onready var life_component: LifeComponent = $Components/LifeComponent
 @onready var shoot_component: ShootComponent = $Components/ShootComponent

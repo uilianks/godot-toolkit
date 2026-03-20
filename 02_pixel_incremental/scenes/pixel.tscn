@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://brd5vfyt0psuh"]
+
+[ext_resource type="Script" uid="uid://b6gib3xhy2ig7" path="res://02_pixel_incremental/scripts/pixel.gd" id="1_jqxcq"]
+[ext_resource type="Texture2D" uid="uid://b1j7pqp11c7u3" path="res://assets/pixel.png" id="2_g2yji"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2yji"]
+size = Vector2(17, 17)
+
+[node name="Pixel" type="RigidBody2D" unique_id=785475499]
+script = ExtResource("1_jqxcq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=749390106]
+shape = SubResource("RectangleShape2D_g2yji")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=946945720]
+modulate = Color(0, 0.33186722, 0.3319533, 1)
+scale = Vector2(0.085, 0.085)
+texture = ExtResource("2_g2yji")
