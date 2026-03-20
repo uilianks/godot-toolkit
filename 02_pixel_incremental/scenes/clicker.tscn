@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://coy0qk84qr7fl"]
+
+[ext_resource type="Script" uid="uid://dmg12yllcexsr" path="res://02_pixel_incremental/scripts/clicker.gd" id="1_ylmyl"]
+
+[node name="clicker" type="Button" unique_id=1385911780]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Clicker"
+script = ExtResource("1_ylmyl")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

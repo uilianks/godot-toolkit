@@ -1,15 +1,60 @@
 [gd_scene format=3 uid="uid://rv0ilvik5jy5"]
 
 [ext_resource type="PackedScene" uid="uid://8isg86pfgkhc" path="res://01_component_structure/scenes/bullet.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://7f1vsdn46ikq" path="res://01_component_structure/scenes/enemy.tscn" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://c67x5y5hnjgce" path="res://01_component_structure/scenes/character.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dafpnrexo2el5" path="res://main.gd" id="1_lquwl"]
+[ext_resource type="PackedScene" uid="uid://coy0qk84qr7fl" path="res://02_pixel_incremental/scenes/clicker.tscn" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://cj0cqsl1asfoe" path="res://02_pixel_incremental/scripts/label.gd" id="6_7mycd"]
+[ext_resource type="Script" uid="uid://dvlnt5a83uv6q" path="res://02_pixel_incremental/scripts/simulacao.gd" id="7_272bh"]
 
 [node name="Main" type="Node2D" unique_id=1045783589]
+script = ExtResource("1_lquwl")
 
-[node name="Bullet" parent="." unique_id=802477460 instance=ExtResource("1_0xm2m")]
-position = Vector2(398, 475)
+[node name="01_componenct_structure" type="Node" parent="." unique_id=9772545]
 
-[node name="Character" parent="." unique_id=458361315 instance=ExtResource("1_ig7tw")]
-position = Vector2(503, 307)
+[node name="Enemy" parent="01_componenct_structure" unique_id=1604450144 instance=ExtResource("1_h2yge")]
+visible = false
+position = Vector2(-654, -4)
 
-[node name="Character2" parent="." unique_id=1379392105 instance=ExtResource("1_ig7tw")]
-position = Vector2(933, 300)
+[node name="Bullet" parent="01_componenct_structure" unique_id=802477460 instance=ExtResource("1_0xm2m")]
+visible = false
+position = Vector2(-571, -121)
+
+[node name="Character" parent="01_componenct_structure" unique_id=458361315 instance=ExtResource("1_ig7tw")]
+visible = false
+position = Vector2(-661, -184)
+
+[node name="02_pixel_incremental" type="Node" parent="." unique_id=775807543]
+
+[node name="Container" type="Container" parent="02_pixel_incremental" unique_id=1150831919]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="clicker" parent="02_pixel_incremental" unique_id=1385911780 instance=ExtResource("4_1bvp3")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.5
+offset_top = -15.5
+offset_right = 30.5
+offset_bottom = 15.5
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="02_pixel_incremental" unique_id=789700218]
+offset_left = 300.0
+offset_top = 400.0
+offset_right = 340.0
+offset_bottom = 423.0
+script = ExtResource("6_7mycd")
+
+[node name="Simulacao" type="Node2D" parent="02_pixel_incremental" unique_id=611822356]
+script = ExtResource("7_272bh")

@@ -15,8 +15,6 @@ radius = 80.05623
 
 [node name="Character" type="CharacterBody2D" unique_id=1379392105]
 script = ExtResource("1_2uymw")
-speed = 100.0
-life = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=718762466]
 texture = ExtResource("1_2t263")
@@ -79,10 +77,12 @@ text = "Do Damage"
 [node name="MovementComponent" type="Node" parent="Components" unique_id=151141339 node_paths=PackedStringArray("body")]
 script = ExtResource("3_0x8me")
 body = NodePath("../..")
+speed = 100.0
 metadata/_custom_type_script = "uid://bgurt5x8e3ug"
 
 [node name="LifeComponent" type="Node" parent="Components" unique_id=867089621 node_paths=PackedStringArray("character", "health_bar", "health_label")]
 script = ExtResource("4_fdktb")
+life = 100
 character = NodePath("../..")
 health_bar = NodePath("../../UI/HealthBar")
 health_label = NodePath("../../UI/HealthBar/HealthLabel")
